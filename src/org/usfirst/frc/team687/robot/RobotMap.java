@@ -15,7 +15,8 @@ public class RobotMap {
 	public final static int EncoderPort1 = 8;
 	public final static int EncoderPort2 = 9;
 	
-	public final static int JoystickPort = 1;
 	public final static int ElevatorPort = 1;
+	
+	public final static int JoystickPort = 1;
 	
 }

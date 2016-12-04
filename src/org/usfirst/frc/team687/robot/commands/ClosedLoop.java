@@ -36,7 +36,9 @@ public class ClosedLoop extends Command {
         requires(Robot.elevator);
     }
 
-    // Called just before this Command runs the first time
+    /**
+     * Set starting position, starting time, and generate motion profile
+     */
     protected void initialize() {
     	m_startPos = Robot.elevator.getCurrentPosition();
     	m_setpoint = SmartDashboard.getNumber("Setpoint");
@@ -49,7 +51,9 @@ public class ClosedLoop extends Command {
     	m_error = 0;
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    /**
+     * Calculate power based on motion profile
+     */
     protected void execute() {
     	m_lastError = m_error;
     	double currentTime = Timer.getFPGATimestamp() - m_startingTime;
@@ -65,8 +69,15 @@ public class ClosedLoop extends Command {
 		Robot.elevator.setElevatorPower(pow);
     }
 
+    /**
+     * Is finished when control changes to open-loop or when the elevator reaches setpoint (with tolerance)
+     */
     protected boolean isFinished() {
-        return !SmartDashboard.getBoolean("Closed Loop");
+    	if (!SmartDashboard.getBoolean("Closed Loop") || Math.abs(m_setpoint - Robot.elevator.getCurrentPosition()) < 5) {
+    		return true;
+    	} else {
+    		return false;
+    	}
     }
 
     // Called once after isFinished returns true

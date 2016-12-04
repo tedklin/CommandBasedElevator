@@ -43,7 +43,6 @@ public class Elevator extends Subsystem {
     }
     
     /**
-     * 
      * @return true if elevator is in closed-loop control
      */
     public boolean isClosedLoop() {
@@ -58,14 +57,14 @@ public class Elevator extends Subsystem {
     }
     
     /**
-     * @return velocity in ticks / 10 ms (clock speed)
+     * @return velocity in ticks / 20 ms (clock speed)
      */
     public double getCurrentVelocity() {
     	return NerdyMath.scaleVelocity(m_encoder.getRate());
     }
     
     /**
-     * Set elevator motor power to a value (between -1.0 to 1.0 in PercentVBus TalonControlMode)
+     * Set elevator motor power to a value (between -1.0 to 1.0)
      * 
      * @param power
      */

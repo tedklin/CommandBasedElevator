@@ -15,24 +15,32 @@ import org.usfirst.frc.team687.robot.Robot;
 public class UpdateControlState extends Command {
 	
 	private boolean m_currentState;
+	private boolean m_newState;
 
     public UpdateControlState() {
     }
 
-    // Called just before this Command runs the first time
+    /**
+     * Get the current state and update new state
+     */
     protected void initialize() {
     	m_currentState = SmartDashboard.getBoolean("Closed Loop");
+    	m_newState = !m_currentState;
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    /**
+     * Update state
+     */
     protected void execute() {
-    	Robot.elevator.setClosedLoop(!m_currentState);
-    	SmartDashboard.putBoolean("Closed Loop", !m_currentState);
+    	Robot.elevator.setClosedLoop(m_newState);
+    	SmartDashboard.putBoolean("Closed Loop", m_newState);
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    /**
+     * Is finished when update has been confirmed
+     */
     protected boolean isFinished() {
-        return Robot.elevator.isClosedLoop() == !m_currentState;
+        return Robot.elevator.isClosedLoop() == m_newState;
     }
 
     // Called once after isFinished returns true

@@ -23,11 +23,16 @@ public class OpenLoop extends Command {
     protected void initialize() {
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    /**
+     * Set elevator power to joystick input
+     */
     protected void execute() {
     	Robot.elevator.setElevatorPower(Robot.oi.getArticJoystickY());
     }
 
+    /**
+     * Is finished when closed loop state is true
+     */
     protected boolean isFinished() {
         return SmartDashboard.getBoolean("Closed Loop");
     }

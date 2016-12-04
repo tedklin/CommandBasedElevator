@@ -21,7 +21,7 @@ public class OI {
 	public JoystickButton updateControlState_2;
 
 	/**
-	 * Initializes the joystick objects 
+	 * Initialize joystick and buttons
 	 */
 	public OI()
 	{
@@ -30,7 +30,7 @@ public class OI {
 		closedLoopControl_1 = new JoystickButton(articJoy, 1);
 		closedLoopControl_1.whenPressed(new ClosedLoop());
 		updateControlState_2 = new JoystickButton(articJoy, 2);
-		updateControlState_2.toggleWhenPressed(new UpdateControlState());
+		updateControlState_2.whenPressed(new UpdateControlState());
 	}
 	
 	/**
